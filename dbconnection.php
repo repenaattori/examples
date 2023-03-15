@@ -1,6 +1,7 @@
 <?php
 
-function createDbConnetion(){
+function createDbConnection()
+{
     $ini = parse_ini_file("myconf.ini");
 
     $host = $ini["host"];
@@ -8,10 +9,12 @@ function createDbConnetion(){
     $username = $ini["username"];
     $pw = $ini["pw"];
 
-    try{
+    try {
         $dbcon = new PDO("mysql:host=$host;dbname=$db", $username, $pw);
-        echo "Onnistui";
-    }catch( PDOException $e){
+        return $dbcon;
+    } catch (PDOException $e) {
         echo $e->getMessage();
     }
+
+    return null;
 }
